@@ -1,20 +1,64 @@
-# Simulateur de File d'Attente d'Impression (Linux/C)
+### Bash Cleaner Script – Nettoyeur de Fichiers
 
-[cite_start]Projet académique réalisé en 3ème année de Licence Informatique[cite: 51], axé sur la programmation système sous Linux.
+--**Mode :** Manuel -- 
+Sécurisé  **OS :** CentOS -- 
+Linux  **Langage :** Bash --
 
-## Objectif
+### 🔍 Description
 
-L'objectif est de simuler une file d'attente d'impression (spooler) en langage C, en utilisant les mécanismes de communication inter-processus (IPC) de Linux.
+Script Bash simple et fiable pour **libérer de l’espace disque** en supprimant les fichiers anciens.
+Exécution **manuelle** pour un **contrôle total** et un **risque minimal**.
+Inclut un **mode test (dry-run)** pour simuler les suppressions avant exécution réelle.
 
-## Fonctionnement
+---
 
-* Un processus "serveur" (le spouleur) gère la file d'attente.
-* Plusieurs processus "clients" peuvent soumettre des demandes d'impression.
-* Le serveur traite les demandes une par une, en simulant le temps d'impression.
+### ⚙️ Fonctionnalités
 
-## Compétences techniques mises en œuvre
+* Suppression des fichiers plus vieux qu’un seuil défini (ex : `+7 jours`)
+* Mode test : vérification sans suppression
+* Configuration dynamique via `cleanup.conf`
+* Journalisation dans `/var/log/cleaner_script.log`
 
-* Langage C
-* Appels système Linux : `fork()` pour créer les processus
-* Communication Inter-Processus : `pipe()` pour la communication entre clients et serveur
-* Gestion basique des processus
+---
+
+### 💡 Compétences Techniques
+
+| Domaine                     | Compétence                                                       |
+| :-------------------------- | :--------------------------------------------------------------- |
+| **Scripting Bash**          | Utilisation de `find`, boucles `while read`, gestion d’arguments |
+| **Sécurité d’exécution**    | Mode test pour prévenir toute suppression accidentelle           |
+| **Configuration modulaire** | Lecture dynamique du fichier `cleanup.conf`                      |
+| **Logs & traçabilité**      | Redirection de la sortie standard et erreur pour audit complet   |
+| **Administration système**  | Nettoyage automatisé et maintenance manuelle des systèmes Linux  |
+
+---
+
+### 🚀 Utilisation
+
+1. **Préparer le script**
+
+   ```bash
+   chmod +x cleaner.sh
+   ```
+
+   Modifier `cleanup.conf` pour y indiquer les répertoires à nettoyer.
+
+2. **Mode test (simulation)**
+
+   ```bash
+   ./cleaner.sh -t
+   ```
+
+3. **Mode réel (suppression effective)**
+
+   ```bash
+   ./cleaner.sh
+   ```
+
+4. **Consulter le log**
+
+   ```bash
+   cat /home/niema/cleaner_script.log
+   ```
+
+
